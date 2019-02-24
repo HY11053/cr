@@ -31,6 +31,17 @@ Route::middleware(['auth'])->group(function ()
     Route::get('/article/edit/{id}', 'ArticleProcessController@ArticleEdit');
     Route::put('/article/edit/{id}', 'ArticleProcessController@PostArticleEdit')->name("article_edit");
     Route::get('/article/delete/{id}', 'ArticleProcessController@ArticleDelete');
+    Route::get('/addtitle','TitleProcessController@TitleAdd');
+    Route::post('/addtitle','TitleProcessController@PostTitleAdd')->name('addtitle');
+    Route::get('/titlelists','TitleProcessController@TitleList')->name('titlelists');
+    Route::get('/title_edit/{id}','TitleProcessController@TitleEdit');
+    Route::put('/title_edit/{id}','TitleProcessController@PostTitleEdit')->name('title_edit');
+    Route::get('/title/list/{id}', 'TitleStoreController@TitleLists')->where(['id'=>'[0-9]']);
+    Route::get('/title/fmimport', 'TitleStoreController@TitleFmImport');
+    Route::post('/title/fmimport', 'TitleStoreController@PostTitleFmImport')->name('tifmimport');
+    Route::get('/title/edit/{id}', 'TitleStoreController@TitleEdit');
+    Route::put('/title/edit/{id}', 'TitleStoreController@PostTitleEdit')->name("titlecon_edit");
+    Route::get('/title/delete/{id}', 'TitleStoreController@TitleDelete');
 });
 
 

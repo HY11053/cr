@@ -44,12 +44,19 @@
                         @endforeach
                     </ul>
                 </li>
-
                 <li>
                     <a href="#"><i class="fa fa-yelp"></i> <span class="nav-label">模板类型添加</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li @if(Request::getRequestUri()=='"/addtemp"')class="active"@endif><a href="/addtemp"><i class="fa fa-circle-o"></i>添加模板分类</a></li>
                         <li @if(Request::getRequestUri()=='"/templists"')class="active"@endif><a href="/templists"><i class="fa fa-circle-o"></i>模板分类列表</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-cloud-upload"></i> <span class="nav-label">模板数据导入 </span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>表单上传导入</a></li>
+                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>TXT文档导入</a></li>
+                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>EXCE格式导入</a></li>
                     </ul>
                 </li>
                 <li>
@@ -63,27 +70,26 @@
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-cloud-upload"></i> <span class="nav-label">模板数据导入 </span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>表单上传导入</a></li>
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>TXT文档导入</a></li>
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>EXCE格式导入</a></li>
-                    </ul>
-                </li>
-                <li>
                     <a href="#"><i class="fa fa-arrows-alt"></i> <span class="nav-label">标题内容管理 </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>表单上传导入</a></li>
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>TXT文档导入</a></li>
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>EXCE格式导入</a></li>
+                        @foreach(\App\AdminModel\Titlesource::all() as $titlelist)
+                            <li @if(Request::getRequestUri()=='/title/list/'.$titlelist->id)class="active"@endif><a href="/title/list/{{$titlelist->id}}"><i class="fa fa-circle-o"></i>{{$titlelist->type}}标题</a></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-spinner"></i> <span class="nav-label">标题类型管理 </span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-spinner"></i> <span class="nav-label">标题类型添加</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>表单上传导入</a></li>
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>TXT文档导入</a></li>
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>EXCE格式导入</a></li>
+                        <li><a href="/addtitle"><i class="fa fa-circle-o"></i>标题分类添加</a></li>
+                        <li><a href="/titlelists"><i class="fa fa-circle-o"></i>标题分类列表</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-codepen"></i> <span class="nav-label">标题数据导入</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/title/fmimport"><i class="fa fa-circle-o"></i>标题表单上传导入</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>标题TXT文档导入</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>标题EXCE格式导入</a></li>
                     </ul>
                 </li>
                 <li>

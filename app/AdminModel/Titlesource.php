@@ -4,11 +4,11 @@ namespace App\AdminModel;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ArticleTemp extends Model
+class Titlesource extends Model
 {
     protected $guarded =['_token','_method'];
-    protected function articles()
+    protected function titles()
     {
-        return $this->hasMany('App\AdminModel\Article','typeid');
+        return $this->hasMany('App\AdminModel\Titlecontent','typeid');
     }
 }
