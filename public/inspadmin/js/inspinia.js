@@ -311,5 +311,6 @@ function WinMove() {
         })
         .disableSelection();
 }
-
+//alert($('#side-menu li ul.nav-second-level li.active').html());
+$('#side-menu li ul.nav-second-level li.active').parent().parent().addClass("active");
 

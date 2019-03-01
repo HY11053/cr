@@ -1,16 +1,15 @@
 @extends('admin.admin')
-@section('title')数据汇总中心@stop
+@section('title')模板文档分类列表@stop
 @section('header_libs')
     <link href="/inspadmin/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
     <link href="/inspadmin/css/plugins/iCheck/custom.css" rel="stylesheet">
 @stop
 @section('main_content')
     <div class="row">
-
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>模板文档分类列表</h5>
+                    <h5>模板文档分类列表    <small>数据总计:{{$articles->total()}}</small></h5>
                     <div class="mail-tools tooltip-demo m-t-md">
                         <button class="btn btn-white btn-sm" data-toggle="tooltip" id="allcheck" checked="checked"  data-placement="top" title="全选"><i class="fa fa-check-circle"></i> 全选</button>
                         <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="预览 暂时不可用"><i class="fa fa-eye"></i> </button>

@@ -4,12 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\AdminModel\Article;
 use App\AdminModel\ArticleTemp;
+use App\AdminModel\Titlecontent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ArticleProcessController extends Controller
 {
+    /**文档导入汇总
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function AllArticleLists()
+    {
+        $articles=Article::orderBy('id','desc')->paginate(30);
+        return view('admin.articlelist',compact('articles'));
+    }
     public function ArticleLists($id)
     {
         $articles=Article::where('typeid',$id)->orderBy('id','desc')->paginate(30);
@@ -43,13 +52,13 @@ class ArticleProcessController extends Controller
     public function PostArticleEdit(Request $request,$id)
     {
         Article::where('id',$id)->update(['typeid'=>$request->typeid,'content'=>$request->contents]);
-        return redirect((action('TempProcessController@TempList')));
+        return redirect((action('ArticleProcessController@AllArticleLists')));
     }
 
     public function ArticleDelete($id)
     {
         Article::where('id',$id)->delete();
-        return redirect((action('TempProcessController@TempList')));
+        return redirect((action('ArticleProcessController@AllArticleLists')));
     }
     /**模板数据导入处理
      * @param Request $request
@@ -64,8 +73,7 @@ class ArticleProcessController extends Controller
                 Article::create(['typeid'=>$request->typeid,'content'=>$content,'editor'=>Auth::user()->name]);
             }
         }
-        $templists=ArticleTemp::all();
-        return view('admin.articlefmimport',compact('templists'));
+        return redirect((action('ArticleProcessController@AllArticleLists')));
     }
 
     /**文档生成视图
@@ -82,16 +90,16 @@ class ArticleProcessController extends Controller
      */
     public function PostArticleCreate(Request $request)
     {
-        foreach ($request->all() as $key=>$type)
+        $types=$request->type;
+        $title=$request->title;
+        $titletype=$request->titletype;
+        foreach ($types as $key=>$type)
         {
             //dd($request->all());
-            if ($key!="title" && $key!="_token")
-            {
-                $contents[]=Article::where('typeid',$key)->inRandomOrder()->first();
-            }
+            $contents[]=Article::where('typeid',$key)->inRandomOrder()->first();
         }
         $contents=array_filter($contents);
-        $title=$request->title;
-        return view('admin.articlecreate',compact('title','contents'));
+        $titlecontent=Titlecontent::where('typeid',$titletype)->inRandomOrder()->first();
+        return view('admin.postarticlecreate',compact('title','contents','titlecontent','types','titletype'));
     }
 }

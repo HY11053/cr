@@ -21,23 +21,16 @@
                     <div class="dropdown profile-element">
                         <img alt="image" class="rounded-circle" src="/inspadmin/img/profile_small.jpg"/>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">David Williams</span>
+                            <span class="block m-t-xs font-bold">{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
                         </a>
                     </div>
                     <div class="logo-element">
                         CR+
                     </div>
                 </li>
-                <li class="active">
-                    <a href="#"><i class="fa fa-random"></i> <span class="nav-label">内容生成操作</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li @if(Request::getRequestUri()=='"/article/create"')class="active"@endif><a href="/article/create"><i class="fa fa-circle-o"></i> <span class="nav-label">品牌文档生成</span></a></li>
-                        <li @if(Request::getRequestUri()=='"/templists"')class="active"@endif><a href="/templists"><i class="fa fa-circle-o"></i> <span class="nav-label"> 普通文档生成</span></a></li>
-                    </ul>
-
-                </li>
-                <li class="active">
-                    <a href="#"><i class="fa fa-file-text"></i> <span class="nav-label">模板内容管理</span> <span class="fa arrow"></span></a>
+                <li @if(Request::getRequestUri()=='/article/create')class="active"@endif><a href="/article/create"><i class="fa fa-random"></i> <span class="nav-label">内容生成操作</span>  </a></li>
+                <li>
+                    <a href="#"><i class="fa fa-file-text"></i> <span class="nav-label">内容模板列表</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         @foreach(\App\AdminModel\ArticleTemp::all() as $templist)
                         <li @if(Request::getRequestUri()=='/article/list/'.$templist->id)class="active"@endif><a href="/article/list/{{$templist->id}}"><i class="fa fa-circle-o"></i>{{$templist->type}}模板</a></li>
@@ -45,32 +38,30 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-yelp"></i> <span class="nav-label">模板类型添加</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-yelp"></i> <span class="nav-label">内容模板管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li @if(Request::getRequestUri()=='"/addtemp"')class="active"@endif><a href="/addtemp"><i class="fa fa-circle-o"></i>添加模板分类</a></li>
-                        <li @if(Request::getRequestUri()=='"/templists"')class="active"@endif><a href="/templists"><i class="fa fa-circle-o"></i>模板分类列表</a></li>
+                        <li @if(Request::getRequestUri()=='/addtemp')class="active"@endif><a href="/addtemp"><i class="fa fa-circle-o"></i>添加模板分类</a></li>
+                        <li @if(Request::getRequestUri()=='/templists')class="active"@endif><a href="/templists"><i class="fa fa-circle-o"></i>模板分类列表</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-cloud-upload"></i> <span class="nav-label">模板数据导入 </span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-cloud-upload"></i> <span class="nav-label">内容数据导入 </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>表单上传导入</a></li>
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>TXT文档导入</a></li>
-                        <li><a href="/article/fmimport"><i class="fa fa-circle-o"></i>EXCE格式导入</a></li>
+                        <li @if(Request::getRequestUri()=='/article/fmimport')class="active"@endif><a href="/article/fmimport"><i class="fa fa-circle-o"></i>表单上传导入</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-joomla"></i> <span class="nav-label">品牌数据管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="graph_flot.html"><i class="fa fa-circle-o"></i>导入品牌数据</a></li>
-                        <li><a href="graph_morris.html"><i class="fa fa-circle-o"></i>品牌数据列表</a></li>
-                        <li><a href="graph_rickshaw.html"><i class="fa fa-circle-o"></i>品牌分类添加</a></li>
-                        <li><a href="graph_chartjs.html"><i class="fa fa-circle-o"></i>品牌分类列表</a></li>
+                        <li @if(Request::getRequestUri()=='/importbrands')class="active"@endif><a href="/importbrands"><i class="fa fa-circle-o"></i>导入品牌数据</a></li>
+                        <li @if(Request::getRequestUri()=='/brandlists')class="active"@endif><a href="/brandlists"><i class="fa fa-circle-o"></i>品牌数据列表</a></li>
+                        <li @if(Request::getRequestUri()=='/brandtypecreate')class="active"@endif><a href="/brandtypecreate"><i class="fa fa-circle-o"></i>品牌分类添加</a></li>
+                        <li @if(Request::getRequestUri()=='/brandtypelist')class="active"@endif><a href="/brandtypelist"><i class="fa fa-circle-o"></i>品牌分类列表</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="#"><i class="fa fa-arrows-alt"></i> <span class="nav-label">标题内容管理 </span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-arrows-alt"></i> <span class="nav-label">标题模板列表 </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         @foreach(\App\AdminModel\Titlesource::all() as $titlelist)
                             <li @if(Request::getRequestUri()=='/title/list/'.$titlelist->id)class="active"@endif><a href="/title/list/{{$titlelist->id}}"><i class="fa fa-circle-o"></i>{{$titlelist->type}}标题</a></li>
@@ -78,42 +69,27 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-spinner"></i> <span class="nav-label">标题类型添加</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-spinner"></i> <span class="nav-label">标题类型管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/addtitle"><i class="fa fa-circle-o"></i>标题分类添加</a></li>
-                        <li><a href="/titlelists"><i class="fa fa-circle-o"></i>标题分类列表</a></li>
+                        <li @if(Request::getRequestUri()=='/addtitle')class="active"@endif><a href="/addtitle"><i class="fa fa-circle-o"></i>标题分类添加</a></li>
+                        <li @if(Request::getRequestUri()=='/titlelists')class="active"@endif><a href="/titlelists"><i class="fa fa-circle-o"></i>标题分类列表</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-codepen"></i> <span class="nav-label">标题数据导入</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/title/fmimport"><i class="fa fa-circle-o"></i>标题表单上传导入</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>标题TXT文档导入</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>标题EXCE格式导入</a></li>
+                        <li @if(Request::getRequestUri()=='/title/fmimport')class="active"@endif><a href="/title/fmimport"><i class="fa fa-circle-o"></i>标题表单上传导入</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-user-circle"></i> <span class="nav-label">用户管理中心 </span><span class="label label-warning float-right">16/24</span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="mailbox.html">用户列表</a></li>
-                        <li><a href="mail_detail.html">用户注册</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>用户列表</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>用户注册</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="metrics.html"><i class="fa fa-pie-chart"></i> <span class="nav-label">数据报表汇总</span>  </a>
-                </li>
-
-                <li>
-                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">工作报表汇总</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="form_basic.html">Basic form</a></li>
-                        <li><a href="form_advanced.html">Advanced Plugins</a></li>
-                        <li><a href="form_wizard.html">Wizard</a></li>
-                        <li><a href="form_file_upload.html">File Upload</a></li>
-                        <li><a href="form_editors.html">Text Editor</a></li>
-                        <li><a href="form_autocomplete.html">Autocomplete</a></li>
-                        <li><a href="form_markdown.html">Markdown</a></li>
-                    </ul>
+                    <a href="/"><i class="fa fa-pie-chart"></i> <span class="nav-label">数据报表汇总</span>  </a>
                 </li>
             </ul>
         </div>
@@ -123,115 +99,28 @@
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                    <form role="search" class="navbar-form-custom" action="search_results.html">
+                    <form role="search" class="navbar-form-custom" action="#">
                         <div class="form-group">
-                            <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                            <input type="text" placeholder="搜索功能暂时不可用" class="form-control" name="top-search" id="top-search">
                         </div>
                     </form>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li style="padding: 20px">
-                        <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+                        <span class="m-r-sm text-muted welcome-message">数据内容生成管理系统</span>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                            <i class="fa fa-envelope"></i>  <span class="label label-warning">0</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-messages dropdown-menu-right">
-                            <li>
-                                <div class="dropdown-messages-box">
-                                    <a class="dropdown-item float-left" href="profile.html">
-                                        <img alt="image" class="rounded-circle" src="/inspadmin/img/a7.jpg">
-                                    </a>
-                                    <div class="media-body">
-                                        <small class="float-right">46h ago</small>
-                                        <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                                        <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <div class="dropdown-messages-box">
-                                    <a class="dropdown-item float-left" href="profile.html">
-                                        <img alt="image" class="rounded-circle" src="/inspadmin/img/a4.jpg">
-                                    </a>
-                                    <div class="media-body ">
-                                        <small class="float-right text-navy">5h ago</small>
-                                        <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                                        <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <div class="dropdown-messages-box">
-                                    <a class="dropdown-item float-left" href="profile.html">
-                                        <img alt="image" class="rounded-circle" src="/inspadmin/img/profile.jpg">
-                                    </a>
-                                    <div class="media-body ">
-                                        <small class="float-right">23h ago</small>
-                                        <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                                        <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a href="mailbox.html" class="dropdown-item">
-                                        <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                            <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                            <i class="fa fa-bell"></i>  <span class="label label-primary">0</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-alerts">
-                            <li>
-                                <a href="mailbox.html" class="dropdown-item">
-                                    <div>
-                                        <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                        <span class="float-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <a href="profile.html" class="dropdown-item">
-                                    <div>
-                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                        <span class="float-right text-muted small">12 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <a href="grid_options.html" class="dropdown-item">
-                                    <div>
-                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                        <span class="float-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <div class="text-center link-block">
-                                    <a href="notifications.html" class="dropdown-item">
-                                        <strong>See All Alerts</strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
                     </li>
-
-
                     <li>
-                        <a href="login.html">
+                        <a href="/logout">
                             <i class="fa fa-sign-out"></i> Log out
                         </a>
                     </li>
@@ -248,11 +137,8 @@
         @yield('main_content')
 
         <div class="footer">
-            <div class="float-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2018
+                <strong>Copyright</strong> Dry Cleaning Snacks Division &copy; 2019
             </div>
         </div>
     </div>
@@ -266,7 +152,6 @@
 <!-- Custom and plugin javascript -->
 <script src="/inspadmin/js/inspinia.js"></script>
 <script src="/inspadmin/js/plugins/pace/pace.min.js"></script>
-
 @yield('footer_libs')
 </body>
 </html>

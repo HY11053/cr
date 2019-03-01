@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class TitleStoreController extends Controller
 {
+    /**标题模板数据汇总
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function AllTitleLists()
+    {
+        $titles=Titlecontent::orderBy('id','desc')->paginate(30);
+        return view('admin.titleconlists',compact('titles'));
+    }
+
+    /**标题模板数据分类汇总
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function TitleLists($id)
     {
         $titles=Titlecontent::where('typeid',$id)->orderBy('id','desc')->paginate(30);
@@ -43,13 +56,13 @@ class TitleStoreController extends Controller
     public function PostTitleEdit(Request $request,$id)
     {
         Titlecontent::where('id',$id)->update(['typeid'=>$request->typeid,'content'=>$request->contents]);
-        return redirect((action('TitleProcessController@TitleList')));
+        return redirect((action('TitleStoreController@AllTitleLists')));
     }
 
     public function TitleDelete($id)
     {
         Titlecontent::where('id',$id)->delete();
-        return redirect((action('TitleProcessController@TitleList')));
+        return redirect((action('TitleStoreController@AllTitleLists')));
     }
     /**模板数据导入处理
      * @param Request $request
@@ -64,7 +77,6 @@ class TitleStoreController extends Controller
                 Titlecontent::create(['typeid'=>$request->typeid,'content'=>$content,'editor'=>Auth::user()->name]);
             }
         }
-        $titlelists=Titlesource::all();
-        return view('admin.titlefmimport',compact('titlelists'));
+        return redirect((action('TitleStoreController@AllTitleLists')));
     }
 }

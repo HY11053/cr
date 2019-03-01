@@ -9,7 +9,7 @@
             <h3>内容模板类型添加</h3>
             <hr>
             <p>请添加对应模板分类名称</p>
-            {{Form::model($temp,array('route' =>array( 'tempedit','id'=>$temp->id),'method' => 'put','files' => true,))}}
+            {{Form::model($temp,array('route' =>array( 'tempedit','id'=>$temp->id),'method' => 'put','files' => false,))}}
             <div class="form-group">
                 {{Form::text('type', null, array('class' => 'form-control','id'=>'title','placeholder'=>'模板名称',"required"=>""))}}
             </div>

@@ -10,7 +10,7 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>模板文档分类列表</h5>
+                    <h5>模板文档分类列表 <small>数据总计：{{$titles->total()}}</small></h5>
                     <div class="mail-tools tooltip-demo m-t-md">
                         <button class="btn btn-white btn-sm" data-toggle="tooltip" id="allcheck" checked="checked"  data-placement="top" title="全选"><i class="fa fa-check-circle"></i> 全选</button>
                         <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="预览 暂时不可用"><i class="fa fa-eye"></i> </button>

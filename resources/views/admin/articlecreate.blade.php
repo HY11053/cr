@@ -10,7 +10,7 @@
             <div class="ibox-title"><h5>文档内容 生成</h5></div>
             <div class="ibox-content ibox-heading">
                 <h3>按需勾选所需生成的模块内容</h3>
-                <small><i class="fa fa-map-marker"></i> 生成之后的数据可重新拖动排序</small>
+                <small><i class="fa fa-map-marker"></i> 生成之后的数据按需根据需求重新编排</small>
             </div>
             <div class="ibox-content inspinia-timeline">
                 <div class="row">
@@ -18,39 +18,33 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="fa fa-file-text-o"></i></div>
-                                <input type="text" class="form-control" id="title" name="title" @if(isset($title)) value="{{$title}}" @endif placeholder="请输入要生成的品牌">
-                                <button type="submit" class="btn btn-primary">@if(!isset($title))生成文档内容@else重新生成文档内容@endif</button>
+                                <input type="text" class="form-control" id="title" name="title"  placeholder="请输入要生成的品牌">
+                                <button type="submit" class="btn btn-primary">生成文档内容</button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 @foreach(\App\AdminModel\ArticleTemp::all() as $templist)
                                 <div class="checkbox checkbox-warning" style="display: inline-block">
-                                    <input id="checkbox{{$templist->id}}" name="{{$templist->id}}" type="checkbox" value="{{$templist->type}}" checked="checked">
+                                    <input id="checkbox{{$templist->id}}" name="type[]" type="checkbox" value="{{$templist->type}}" checked="checked">
                                     <label for="checkbox{{$templist->id}}">{{$templist->type}}</label>
                                 </div>
                                 @endforeach
                             </div>
                         </div>
-                    {!! Form::close() !!}
-                </div>
-                @if(isset($contents))
-                    @foreach($contents as $content)
-                        <div class="timeline-item" id="sortable-view">
-                            <div class="row">
-                                <div class="col-1 date">
-                                    <i class="fa fa-briefcase"></i>
-                                </div>
-                                <div class="col content no-top-border ui-sortable">
-                                    <p class="m-b-xs"><strong>{{$title}}{{\App\AdminModel\ArticleTemp::where('id',$content->typeid)->value('type')}}</strong></p>
-                                    @foreach(explode('@@',$content->content) as $newcontent)
-                                    <p>{{$newcontent}}</p>
-                                    @endforeach
-                                </div>
+                    <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @foreach(\App\AdminModel\Titlesource::all() as $titletmp)
+                                    <div class="radio radio-success" style="display: inline-block">
+                                        <input type="radio" name="titletype" id="radio{{$titletmp->id}}" value="{{$titletmp->id}}" >
+                                        <label for="radio{{$titletmp->id}}">{{$titletmp->type}}</label>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                    @endforeach
-                @endif
+                    {!! Form::close() !!}
+                </div>
             </div>
         </div>
     </div>

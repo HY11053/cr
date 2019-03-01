@@ -1,5 +1,5 @@
 @extends('admin.admin')
-@section('title')数据汇总中心@stop
+@section('title')模板数据导入--表单上传@stop
 @section('header_libs')
 @stop
 @section('main_content')

@@ -9,52 +9,48 @@
             <div class="col-lg-3">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <span class="label label-success float-right">Monthly</span>
-                        <h5>Income</h5>
+                        <span class="label label-success float-right">Articles</span>
+                        <h5>内容总量</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">40 886,200</h1>
-                        <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                        <small>Total income</small>
+                        <h1 class="no-margins">{{\App\AdminModel\Article::all()->count()}}</h1>
+                        <small>内容模板总计</small>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <span class="label label-info float-right">Annual</span>
-                        <h5>Orders</h5>
+                        <span class="label label-info float-right">Titles</span>
+                        <h5>标题总量</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">275,800</h1>
-                        <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                        <small>New orders</small>
+                        <h1 class="no-margins">{{\App\AdminModel\Titlecontent::all()->count()}}</h1>
+                        <small>标题总计</small>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <span class="label label-primary float-right">Today</span>
-                        <h5>visits</h5>
+                        <span class="label label-primary float-right">Users</span>
+                        <h5>用户数</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">106,120</h1>
-                        <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-                        <small>New visits</small>
+                        <h1 class="no-margins">{{\App\User::all()->count()}}</h1>
+                        <small>用户总计</small>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <span class="label label-danger float-right">Low value</span>
-                        <h5>User activity</h5>
+                        <span class="label label-danger float-right">Brands</span>
+                        <h5>品牌数</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">80,600</h1>
-                        <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-                        <small>In first month</small>
+                        <h1 class="no-margins">{{\App\AdminModel\Brandcontainer::all()->count()}}</h1>
+                        <small>品牌总计</small>
                     </div>
                 </div>
             </div>
@@ -66,14 +62,14 @@
                 <div class="ibox-content">
                     <div>
                         <span class="float-right text-right">
-                        <small>Average value of sales in the past month in: <strong>United states</strong></small>
+                        <small>内容模板数据导入完成: <strong>百分比</strong></small>
                             <br/>
-                            All sales: 162,862
+                            总用户数: {{\App\User::all()->count()}}
                         </span>
-                        <h3 class="font-bold no-margins">
-                            Half-year revenue margin
+                        <h3 class="font-bold no-margins font-normal">
+                            内容数据前后两周添加对比图
                         </h3>
-                        <small>Sales marketing.</small>
+                        <small>Article Template Create.</small>
                     </div>
 
                     <div class="m-t-sm">
@@ -85,38 +81,15 @@
                             </div>
                             <div class="col-md-4">
                                 <ul class="stat-list m-t-lg">
+                                    @foreach($users as $user)
                                     <li>
                                         <h2 class="no-margins">2,346</h2>
-                                        <small>Total orders in period</small>
+                                        <small>{{$user->name}}</small>
                                         <div class="progress progress-mini">
                                             <div class="progress-bar" style="width: 48%;"></div>
                                         </div>
                                     </li>
-                                    <li>
-                                        <h2 class="no-margins ">4,422</h2>
-                                        <small>Orders in last month</small>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar" style="width: 60%;"></div>
-                                        </div>
-                                    </li><li>
-                                        <h2 class="no-margins ">4,422</h2>
-                                        <small>Orders in last month</small>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar" style="width: 60%;"></div>
-                                        </div>
-                                    </li><li>
-                                        <h2 class="no-margins ">4,422</h2>
-                                        <small>Orders in last month</small>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar" style="width: 60%;"></div>
-                                        </div>
-                                    </li><li>
-                                        <h2 class="no-margins ">4,422</h2>
-                                        <small>Orders in last month</small>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar" style="width: 60%;"></div>
-                                        </div>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -124,10 +97,10 @@
                     <div class="m-t-md">
                         <small class="float-right">
                             <i class="fa fa-clock-o"> </i>
-                            Update on 16.07.2015
+                            更新时间： {{\Carbon\Carbon::now()}}
                         </small>
                         <small>
-                            <strong>Analysis of sales:</strong> The value has been changed over time, and last month reached a level over $50,000.
+                            <strong>备注信息:</strong> 图表中不包含标题模板的统计数据.
                         </small>
                     </div>
                 </div>
@@ -140,214 +113,34 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Custom responsive table </h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#" class="dropdown-item">Config option 1</a>
-                            </li>
-                            <li><a href="#" class="dropdown-item">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
+                    <h5>最新内容添加信息</h5>
                 </div>
                 <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-sm-9 m-b-xs">
-                            <div data-toggle="buttons" class="btn-group btn-group-toggle">
-                                <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Day </label>
-                                <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> Week </label>
-                                <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control form-control-sm" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-sm btn-primary" type="button">Go!</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
 
-                                <th>#</th>
-                                <th>Project </th>
-                                <th>Name </th>
-                                <th>Phone </th>
-                                <th>Company </th>
-                                <th>Completed </th>
-                                <th>Task</th>
-                                <th>Date</th>
+                                <th>id</th>
+                                <th>内容详情 </th>
+                                <th>所属分类 </th>
+                                <th>信息添加人 </th>
+                                <th>添加时间 </th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Project <small>This is example of project</small></td>
-                                <td>Patrick Smith</td>
-                                <td>0800 051213</td>
-                                <td>Inceptos Hymenaeos Ltd</td>
-                                <td><span class="pie">0.52/1.561</span></td>
-                                <td>20%</td>
-                                <td>Jul 14, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Alpha project</td>
-                                <td>Alice Jackson</td>
-                                <td>0500 780909</td>
-                                <td>Nec Euismod In Company</td>
-                                <td><span class="pie">6,9</span></td>
-                                <td>40%</td>
-                                <td>Jul 16, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Betha project</td>
-                                <td>John Smith</td>
-                                <td>0800 1111</td>
-                                <td>Erat Volutpat</td>
-                                <td><span class="pie">3,1</span></td>
-                                <td>75%</td>
-                                <td>Jul 18, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Gamma project</td>
-                                <td>Anna Jordan</td>
-                                <td>(016977) 0648</td>
-                                <td>Tellus Ltd</td>
-                                <td><span class="pie">4,9</span></td>
-                                <td>18%</td>
-                                <td>Jul 22, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Alpha project</td>
-                                <td>Alice Jackson</td>
-                                <td>0500 780909</td>
-                                <td>Nec Euismod In Company</td>
-                                <td><span class="pie">6,9</span></td>
-                                <td>40%</td>
-                                <td>Jul 16, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Project <small>This is example of project</small></td>
-                                <td>Patrick Smith</td>
-                                <td>0800 051213</td>
-                                <td>Inceptos Hymenaeos Ltd</td>
-                                <td><span class="pie">0.52/1.561</span></td>
-                                <td>20%</td>
-                                <td>Jul 14, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Gamma project</td>
-                                <td>Anna Jordan</td>
-                                <td>(016977) 0648</td>
-                                <td>Tellus Ltd</td>
-                                <td><span class="pie">4,9</span></td>
-                                <td>18%</td>
-                                <td>Jul 22, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Project <small>This is example of project</small></td>
-                                <td>Patrick Smith</td>
-                                <td>0800 051213</td>
-                                <td>Inceptos Hymenaeos Ltd</td>
-                                <td><span class="pie">0.52/1.561</span></td>
-                                <td>20%</td>
-                                <td>Jul 14, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Alpha project</td>
-                                <td>Alice Jackson</td>
-                                <td>0500 780909</td>
-                                <td>Nec Euismod In Company</td>
-                                <td><span class="pie">6,9</span></td>
-                                <td>40%</td>
-                                <td>Jul 16, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Betha project</td>
-                                <td>John Smith</td>
-                                <td>0800 1111</td>
-                                <td>Erat Volutpat</td>
-                                <td><span class="pie">3,1</span></td>
-                                <td>75%</td>
-                                <td>Jul 18, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Gamma project</td>
-                                <td>Anna Jordan</td>
-                                <td>(016977) 0648</td>
-                                <td>Tellus Ltd</td>
-                                <td><span class="pie">4,9</span></td>
-                                <td>18%</td>
-                                <td>Jul 22, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Alpha project</td>
-                                <td>Alice Jackson</td>
-                                <td>0500 780909</td>
-                                <td>Nec Euismod In Company</td>
-                                <td><span class="pie">6,9</span></td>
-                                <td>40%</td>
-                                <td>Jul 16, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Project <small>This is example of project</small></td>
-                                <td>Patrick Smith</td>
-                                <td>0800 051213</td>
-                                <td>Inceptos Hymenaeos Ltd</td>
-                                <td><span class="pie">0.52/1.561</span></td>
-                                <td>20%</td>
-                                <td>Jul 14, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Gamma project</td>
-                                <td>Anna Jordan</td>
-                                <td>(016977) 0648</td>
-                                <td>Tellus Ltd</td>
-                                <td><span class="pie">4,9</span></td>
-                                <td>18%</td>
-                                <td>Jul 22, 2013</td>
-                                <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                            </tr>
+                            @foreach($articles as $article)
+                                <tr>
+                                    <td>{{$article->id}}</td>
+                                    <td title="{{$article->content}}" style="cursor:pointer;">{{str_limit($article->content,80,'...')}}</td>
+                                    <td>{{$article->arctype->type}}</td>
+                                    <td>{{$article->editor}}</td>
+                                    <td> <i class="fa fa-clock-o"> </i> {{$article->created_at}}</td>
+                                    <td><span class="pie">0.52/1.561</span></td>
+                                </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -369,7 +162,16 @@
     <script>
         $(document).ready(function() {
             var lineData = {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                labels: [
+                    "星期{{\Carbon\Carbon::parse(date('Y-m-d H:i:s',strtotime(\Carbon\Carbon::now())-3600*24*7))->dayOfWeek?:'日'}}",
+                    "星期{{\Carbon\Carbon::parse(date('Y-m-d H:i:s',strtotime(\Carbon\Carbon::now())-3600*24*6))->dayOfWeek?:'日'}}",
+                    "星期{{\Carbon\Carbon::parse(date('Y-m-d H:i:s',strtotime(\Carbon\Carbon::now())-3600*24*5))->dayOfWeek?:'日'}}",
+                    "星期{{\Carbon\Carbon::parse(date('Y-m-d H:i:s',strtotime(\Carbon\Carbon::now())-3600*24*4))->dayOfWeek?:'日'}}",
+                    "星期{{\Carbon\Carbon::parse(date('Y-m-d H:i:s',strtotime(\Carbon\Carbon::now())-3600*24*3))->dayOfWeek?:'日'}}",
+                    "星期{{\Carbon\Carbon::parse(date('Y-m-d H:i:s',strtotime(\Carbon\Carbon::now())-3600*24*2))->dayOfWeek?:'日'}}",
+                    "星期{{\Carbon\Carbon::yesterday()->dayOfWeek?:'日'}}",
+                    "星期{{\Carbon\Carbon::now()->dayOfWeek?:'日'}}"
+                ],
                 datasets: [
                     {
                         label: "本周数据",
@@ -377,7 +179,16 @@
                         borderColor: "rgba(26,179,148,0.7)",
                         pointBackgroundColor: "rgba(26,179,148,1)",
                         pointBorderColor: "#fff",
-                        data: [48, 48, 60, 39, 56, 37, 30]
+                        data: [
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(7))->where('created_at','<',\Carbon\Carbon::today()->subDays(6))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(6))->where('created_at','<',\Carbon\Carbon::today()->subDays(5))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(5))->where('created_at','<',\Carbon\Carbon::today()->subDays(4))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(4))->where('created_at','<',\Carbon\Carbon::today()->subDays(3))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(3))->where('created_at','<',\Carbon\Carbon::today()->subDays(2))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(2))->where('created_at','<',\Carbon\Carbon::today()->subDays(1))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::yesterday())->where('created_at','<',\Carbon\Carbon::today())->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today())->count()}}
+                        ]
                     },
                     {
                         label: "同比上周",
@@ -385,7 +196,16 @@
                         borderColor: "rgba(220,220,220,1)",
                         pointBackgroundColor: "rgba(220,220,220,1)",
                         pointBorderColor: "#fff",
-                        data: [65, 59, 40, 51, 36, 25, 40]
+                        data: [
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(14))->where('created_at','<',\Carbon\Carbon::today()->subDays(13))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(13))->where('created_at','<',\Carbon\Carbon::today()->subDays(12))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(12))->where('created_at','<',\Carbon\Carbon::today()->subDays(11))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(11))->where('created_at','<',\Carbon\Carbon::today()->subDays(10))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(10))->where('created_at','<',\Carbon\Carbon::today()->subDays(9))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(9))->where('created_at','<',\Carbon\Carbon::today()->subDays(8))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(8))->where('created_at','<',\Carbon\Carbon::today()->subDays(7))->count()}},
+                            {{\App\AdminModel\Article::where('created_at','>',\Carbon\Carbon::today()->subDays(7))->where('created_at','<',\Carbon\Carbon::today()->subDays(6))->count()}},
+                        ]
                     }
                 ]
             };
