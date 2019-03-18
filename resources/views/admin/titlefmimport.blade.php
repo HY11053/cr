@@ -20,7 +20,7 @@
                 <h3 class="timeline-header"><a href="">标题提交区域 一条一行</a></h3>
             </div>
             <div class="form-group col-md-12">
-                <textarea class="form-control" name="contents" rows="30"></textarea>
+                <textarea class="form-control" name="contents" rows="10"></textarea>
             </div>
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">提交数据</button>
