@@ -24,9 +24,9 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                @foreach(\App\AdminModel\ArticleTemp::all() as $templist)
+                                @foreach(\App\AdminModel\ArticleTemp::orderBy('sort','desc')->get() as $templist)
                                 <div class="checkbox checkbox-warning" style="display: inline-block">
-                                    <input id="checkbox{{$templist->id}}" name="type[]" type="checkbox" value="{{$templist->type}}" checked="checked">
+                                    <input id="checkbox{{$templist->id}}" name="type[{{$templist->id}}]" type="checkbox" value="{{$templist->type}}" checked="checked">
                                     <label for="checkbox{{$templist->id}}">{{$templist->type}}</label>
                                 </div>
                                 @endforeach

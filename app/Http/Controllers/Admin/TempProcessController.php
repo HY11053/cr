@@ -13,7 +13,7 @@ class TempProcessController extends Controller
      */
     public function TempList()
     {
-        $templists=ArticleTemp::all();
+        $templists=ArticleTemp::orderBy('sort','desc')->get();
         return view('admin.templists',compact('templists'));
     }
 
@@ -47,7 +47,7 @@ class TempProcessController extends Controller
 
     public function PostTempEdit(Request $request,$id)
     {
-        ArticleTemp::where('id',$id)->update(['type'=>$request->type]);
+        ArticleTemp::where('id',$id)->update(['type'=>$request->type,'sort'=>$request->sort]);
         return redirect((action('TempProcessController@TempList')));
     }
 }

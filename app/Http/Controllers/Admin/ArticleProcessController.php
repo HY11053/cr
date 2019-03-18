@@ -95,8 +95,7 @@ class ArticleProcessController extends Controller
         $titletype=$request->titletype;
         foreach ($types as $key=>$type)
         {
-            //dd($request->all());
-            $contents[]=Article::where('typeid',$key)->inRandomOrder()->first();
+            $contents[]=Article::where('typeid',ArticleTemp::where('type',$type)->value('id'))->inRandomOrder()->first();
         }
         $contents=array_filter($contents);
         $titlecontent=Titlecontent::where('typeid',$titletype)->inRandomOrder()->first();

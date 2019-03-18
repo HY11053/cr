@@ -17,6 +17,7 @@
                             <th>ID</th>
                             <th>分类名称</th>
                             <th>创建时间</th>
+                            <th>排序id</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -26,6 +27,7 @@
                                 <td><small>{{$templist->id}}</small></td>
                                 <td><i class="fa fa-file-text"></i> {{$templist->type}}</td>
                                 <td><i class="fa fa-clock-o"></i>{{$templist->created_at}}</td>
+                                <td><i class="fa fa-file-sound-o"></i> {{$templist->sort}}</td>
                                 <td class="text-navy"> <span class="label label-primary"><a style="color: #fff; font-weight: normal;" href="/tempedit/{{$templist->id}}">编辑</a></span> </td>
                             </tr>
                         @endforeach

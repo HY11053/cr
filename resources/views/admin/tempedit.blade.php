@@ -11,9 +11,12 @@
             <p>请添加对应模板分类名称</p>
             {{Form::model($temp,array('route' =>array( 'tempedit','id'=>$temp->id),'method' => 'put','files' => false,))}}
             <div class="form-group">
-                {{Form::text('type', null, array('class' => 'form-control','id'=>'title','placeholder'=>'模板名称',"required"=>""))}}
+                {{Form::text('type', null, array('class' => 'form-control','id'=>'type','placeholder'=>'模板名称',"required"=>""))}}
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">添加模板内容</button>
+            <div class="form-group">
+                {{Form::text('sort', null, array('class' => 'form-control','id'=>'sort','placeholder'=>'排序id',"required"=>""))}}
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">修改模板内容</button>
             {!! Form::close() !!}
         </div>
     </div>

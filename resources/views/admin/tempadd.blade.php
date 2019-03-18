@@ -13,6 +13,9 @@
                     <div class="form-group">
                         {{Form::text('type', null, array('class' => 'form-control','id'=>'title','placeholder'=>'内容模板名称',"required"=>""))}}
                     </div>
+                    <div class="form-group">
+                        {{Form::text('sort', null, array('class' => 'form-control','id'=>'sort','placeholder'=>'排序id',"required"=>""))}}
+                    </div>
                     <button type="submit" class="btn btn-primary block full-width m-b">添加模板内容</button>
                 {!! Form::close() !!}
             </div>

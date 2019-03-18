@@ -24,7 +24,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                @foreach(\App\AdminModel\ArticleTemp::all() as $index=>$templist)
+                                @foreach(\App\AdminModel\ArticleTemp::orderBy('sort','desc')->get() as $index=>$templist)
                                     <div class="checkbox checkbox-warning" style="display: inline-block">
                                         <input id="checkbox{{$templist->id}}" name="type[]" type="checkbox" value="{{$templist->type}}" @foreach($types as $type) @if($type==$templist->type) checked="checked" @endif @endforeach>
                                         <label for="checkbox{{$templist->id}}">{{$templist->type}}</label>
@@ -67,7 +67,7 @@
                                     <div class="col content no-top-border ui-sortable">
                                         <p class="m-b-xs"><strong>{{$title}}{{\App\AdminModel\ArticleTemp::where('id',$content->typeid)->value('type')}}</strong></p>
                                         @foreach(explode('@@',$content->content) as $newcontent)
-                                            <p>{{$newcontent}}</p>
+                                            <p>{{str_replace('{}',$title,$newcontent)}}</p>
                                         @endforeach
                                     </div>
                                 </div>
